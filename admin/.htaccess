@@ -1,0 +1,35 @@
+Options -Indexes
+<ifmodule mod_expires.c>
+<Filesmatch "\.(jpg|jpeg|png|gif|js|css|swf|ico|woff|mp3)$">
+    ExpiresActive on
+    ExpiresDefault "access plus 1 year"
+    Header append Vary: Accept-Encoding
+</Filesmatch>
+</ifmodule>
+
+RewriteEngine On 
+RewriteRule ^pl?$ calculate.php
+RewriteRule ^pl/?$ calculate.php
+RewriteRule ^pl/([a-zA-Z]+) calculate.php?name=$1
+
+RewriteRule ^fb?$ frontback.php
+RewriteRule ^fb/?$ frontback.php
+RewriteRule ^fb/([a-zA-Z]+) frontback.php?name=$1
+
+
+<IfModule mod_rewrite.c> 
+RewriteCond %{HTTP_USER_AGENT} ^w3af.sourceforge.net [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} dirbuster [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} nikto [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} SF [OR] 
+RewriteCond %{HTTP_USER_AGENT} sqlmap [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} fimap [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} nessus [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} whatweb [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} Openvas [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} jbrofuzz [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} libwhisker [NC,OR] 
+RewriteCond %{HTTP_USER_AGENT} webshag [NC,OR] 
+RewriteCond %{HTTP:Acunetix-Product} ^WVS 
+RewriteRule ^.* http://127.0.0.1/ [R=301,L] 
+</IfModule>
