@@ -87,7 +87,7 @@ function getCalender($year = '',$month = '')
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Time End</label>
 							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" id="inputSuccess3" >
+								<input type="time" class="form-control" id="inputSuccess3">
 								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
 							</div>
 						</div>
@@ -111,7 +111,7 @@ function getCalender($year = '',$month = '')
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Organization Name</label>
 							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" id="inputSuccess3" placeholder="Last Name">
+								<input type="text" class="form-control" placeholder="Name of Organization">
 								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
 							</div>
 						</div>
@@ -119,7 +119,7 @@ function getCalender($year = '',$month = '')
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Receiver Name</label>
 							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" id="inputSuccess3" placeholder="Last Name" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter Receiver Name">
+								<input type="text" class="form-control" id="inputSuccess3" placeholder="Name of Receiver" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter Receiver Name">
 								<span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
 							</div>
 						</div>
@@ -217,6 +217,8 @@ function getCalender($year = '',$month = '')
 			<ul>
 				<?php 
 				$dayCount = 1; 
+				$dateNow = date("Y-m-d");
+
 				for($cb=1;$cb<=$boxDisplay;$cb++){
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
                         //Current date
@@ -231,7 +233,9 @@ function getCalender($year = '',$month = '')
                         //
                         //
                         //
-                        //
+
+
+
                         // TODO ----> Disable adding in date prior to current date
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
 							echo '<li date="'.$currentDate.'" class="grey date_cell">';
@@ -248,12 +252,23 @@ function getCalender($year = '',$month = '')
                         //Hover event popup
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
-						echo '<div class="popup_event">Events ('.$eventNum.')</div>';
-						echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');">view events</a><br/>':'';
 
-                        //For Add Event
-						echo '<a href="javascript:;" onclick="addEvent(\''.$currentDate.'\');">add event</a>';
-						echo '</div></div>';
+						if($eventNum == 0){
+							echo '<div class="popup_event">No Events!</div>';
+						}else{
+							echo '<div class="popup_event">Events ('.$eventNum.')</div>';
+							echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');">view events</a><br/>':'';
+						}
+
+
+						if(strtotime($currentDate) < strtotime($dateNow)){ 
+
+						}else{
+							                        //For Add Event
+							echo '<a href="javascript:;" onclick="addEvent(\''.$currentDate.'\');">add event</a>';
+							echo '</div></div>';
+						}
+
 
 						echo '</li>';
 						$dayCount++;
