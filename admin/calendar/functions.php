@@ -34,10 +34,16 @@ function getCalender($year = '',$month = '')
 	?>
 	<div id="calender_section">
 		<h2>
-			<a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">&lt;&lt;</a>
-			<select name="month_dropdown" class="month_dropdown dropdown"><?php echo getAllMonths($dateMonth); ?></select>
-			<select name="year_dropdown" class="year_dropdown dropdown"><?php echo getYearList($dateYear); ?></select>
-			<a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>');">&gt;&gt;</a>
+
+			<form class="form-inline">
+				<a class="btn btn-default" href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">&lt;&lt;</a>
+
+				<select name="month_dropdown" class="month_dropdown dropdown form-control form-inline"><?php echo getAllMonths($dateMonth); ?></select>
+				<select name="year_dropdown" class="year_dropdown dropdown form-control form-inline"><?php echo getYearList($dateYear); ?></select>
+
+				<a class="btn btn-default" href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>');">&gt;&gt;</a>
+
+			</form>
 		</h2>
 		<div id="event_list" class="none"></div>
 		<!--For Add Event-->
@@ -85,6 +91,20 @@ function getCalender($year = '',$month = '')
 								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Event Status</label>
+							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+								<select class="form-control">
+									<option>Approved</option>
+									<option>Blocked</option>
+									<option>Canceled</option>
+								</select>
+								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+							</div>
+						</div>
+
+
 
 						<h4>Organization Information</h4>
 
@@ -160,10 +180,13 @@ function getCalender($year = '',$month = '')
 						<div class="ln_solid"></div>
 						<div class="form-group">
 							<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+
 								<input type="hidden" id="eventDate" value=""/>
-								<button type="button" class="btn btn-primary">Cancel</button>
-								<button class="btn btn-primary" type="reset">Reset</button>
 								<button type="button" id="addEventBtn" class="btn btn-success">Submit</button>
+
+								<button class="btn btn-warning" type="reset">Reset</button>
+								<button type="button" class="btn btn-danger" onclick="hideAddForm()">Cancel</button>
+
 							</div>
 						</div>
 					</form>
@@ -171,7 +194,7 @@ function getCalender($year = '',$month = '')
 			</div>
 		</div>
 
-		
+
 		<div id="calender_section_top">
 			<ul>
 				<li>Sun</li>
@@ -183,6 +206,13 @@ function getCalender($year = '',$month = '')
 				<li>Sat</li>
 			</ul>
 		</div>
+
+
+		<script type="text/javascript">
+			function hideAddForm(){
+				$('#event_add').slideUp('slow');
+			}
+		</script>
 		<div id="calender_section_bot">
 			<ul>
 				<?php 
@@ -198,6 +228,11 @@ function getCalender($year = '',$month = '')
 						$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1");
 						$eventNum = $result->num_rows;
                         //Define date cell color
+                        //
+                        //
+                        //
+                        //
+                        // TODO ----> Disable adding in date prior to current date
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
 							echo '<li date="'.$currentDate.'" class="grey date_cell">';
 						}elseif($eventNum > 0){
@@ -215,6 +250,7 @@ function getCalender($year = '',$month = '')
 						echo '<div class="date_window">';
 						echo '<div class="popup_event">Events ('.$eventNum.')</div>';
 						echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');">view events</a><br/>':'';
+
                         //For Add Event
 						echo '<a href="javascript:;" onclick="addEvent(\''.$currentDate.'\');">add event</a>';
 						echo '</div></div>';
