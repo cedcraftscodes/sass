@@ -5,7 +5,7 @@
 
     <ul class="nav side-menu">
       <li>
-        <a href="index.php"><i class="fa fa-line-chart"></i>Schedule Overview</a>
+        <a href="index.php"><i class="fa fa-calendar"></i>Schedule Overview</a>
       </li>
     </ul>
 

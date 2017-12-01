@@ -45,154 +45,7 @@ function getCalender($year = '',$month = '')
 
 			</form>
 		</h2>
-		<div id="event_list" class="none"></div>
-		<!--For Add Event-->
 
-
-		<div id="event_add" class="none">
-
-			<div class="x_panel">
-				<div class="x_title">
-					<h2>Add Event On <small><span id="eventDateView"></span></small></h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-					<br>
-					<form class="form-horizontal form-label-left input_mask">
-
-						<h4>Event Information</h4>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Event Title</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" id="eventTitle"  placeholder="Input event title">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Summary</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<textarea class="form-control" rows="5" placeholder="Tell us about the event."></textarea>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Time Start</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="time" class="form-control" id="inputSuccess3">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Time End</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="time" class="form-control" id="inputSuccess3">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Event Status</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<select class="form-control">
-									<option>Approved</option>
-									<option>Blocked</option>
-									<option>Canceled</option>
-								</select>
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-							</div>
-						</div>
-
-
-
-						<h4>Organization Information</h4>
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Organization Name</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" placeholder="Name of Organization">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Receiver Name</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" id="inputSuccess3" placeholder="Name of Receiver" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter Receiver Name">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
-							</div>
-						</div>
-
-
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Street</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" id="inputSuccess3" placeholder="Last Name" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter Receiver Name">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" id="inputSuccess3" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter City" name="city" required="">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Province</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter  Province" name="province" required="">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">ZipCode</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Enter  Zip Code" name="zipcode"  title="Enter a valid zip code" pattern="[0-9]{4}"  required="">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Contact Number</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="text" class="form-control" title="Enter a valid phone number" pattern="[0-9]{11}" placeholder="Enter  Contact Number" name="contactnumber" required="">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
-							<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-								<input type="email" class="form-control" title="Enter a valid phone number" pattern="[0-9]{11}" placeholder="Enter Email Address" name="contactnumber" required="">
-								<span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
-							</div>
-						</div>
-
-						<div class="ln_solid"></div>
-						<div class="form-group">
-							<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-
-								<input type="hidden" id="eventDate" value=""/>
-								<button type="button" id="addEventBtn" class="btn btn-success">Submit</button>
-
-								<button class="btn btn-warning" type="reset">Reset</button>
-								<button type="button" class="btn btn-danger" onclick="hideAddForm()">Cancel</button>
-
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
 
 
 		<div id="calender_section_top">
@@ -208,11 +61,7 @@ function getCalender($year = '',$month = '')
 		</div>
 
 
-		<script type="text/javascript">
-			function hideAddForm(){
-				$('#event_add').slideUp('slow');
-			}
-		</script>
+
 		<div id="calender_section_bot">
 			<ul>
 				<?php 
@@ -230,11 +79,6 @@ function getCalender($year = '',$month = '')
 						$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1");
 						$eventNum = $result->num_rows;
                         //Define date cell color
-                        //
-                        //
-                        //
-
-
 
                         // TODO ----> Disable adding in date prior to current date
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
@@ -249,6 +93,7 @@ function getCalender($year = '',$month = '')
 						echo $dayCount;
 						echo '</span>';
 
+
                         //Hover event popup
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
@@ -260,11 +105,8 @@ function getCalender($year = '',$month = '')
 							echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');">view events</a><br/>':'';
 						}
 
-
-						if(strtotime($currentDate) < strtotime($dateNow)){ 
-
-						}else{
-							                        //For Add Event
+						if(strtotime($currentDate) > strtotime($dateNow)){ 
+							//For Add Event
 							echo '<a href="javascript:;" onclick="addEvent(\''.$currentDate.'\');">add event</a>';
 							echo '</div></div>';
 						}
@@ -299,8 +141,7 @@ function getCalender($year = '',$month = '')
 						data:'func=getEvents&date='+date,
 						success:function(html){
 							$('#event_list').html(html);
-							$('#event_add').slideUp('slow');
-							$('#event_list').slideDown('slow');
+							$("#showEventsModal").modal("show");
 						}
 					});
 				}
@@ -308,8 +149,7 @@ function getCalender($year = '',$month = '')
         function addEvent(date){
         	$('#eventDate').val(date);
         	$('#eventDateView').html(date);
-        	$('#event_list').slideUp('slow');
-        	$('#event_add').slideDown('slow');
+        	$("#addEventModal").modal("show");
         }
         //For Add Event
         $(document).ready(function(){
@@ -321,11 +161,12 @@ function getCalender($year = '',$month = '')
         			url:'calendar/functions.php',
         			data:'func=addEvent&date='+date+'&title='+title,
         			success:function(msg){
-        				if(msg == 'ok'){
+        				if(msg.trim() == 'ok'){
         					var dateSplit = date.split("-");
         					$('#eventTitle').val('');
         					alert('Event Created Successfully.');
         					getCalendar('calendar_div',dateSplit[0],dateSplit[1]);
+        					$("#addEventModal").modal("hide");
         				}else{
         					alert('Some problem occurred, please try again.');
         				}
@@ -349,9 +190,7 @@ function getCalender($year = '',$month = '')
         	$('.year_dropdown').on('change',function(){
         		getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
         	});
-        	$(document).click(function(){
-        		$('#event_list').slideUp('slow');
-        	});
+
         });
     </script>
     <?php
@@ -389,18 +228,57 @@ function getYearList($selected = ''){
  */
 function getEvents($date = ''){
     //Include db configuration file
-	include 'dbConfig.php';
+	include '../config/config.php';
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
-    //Get events based on the current date
-	$result = $db->query("SELECT title FROM events WHERE date = '".$date."' AND status = 1");
-	if($result->num_rows > 0){
-		$eventListHTML = '<h2>Events on '.date("l, d M Y",strtotime($date)).'</h2>';
-		$eventListHTML .= '<ul>';
-		while($row = $result->fetch_assoc()){ 
-			$eventListHTML .= '<li>'.$row['title'].'</li>';
+
+
+
+	$query = $conn->prepare('SELECT title, date FROM events WHERE date = :date AND status = 1');
+	$query->execute(array(':date' => $date));
+
+
+
+                      
+
+
+	if($query->rowCount() > 0){
+		$eventListHTML = "<div id='showEventsModal' class='modal fade' role='dialog'>
+			                <div class='modal-dialog'>
+			                  <div class='modal-content'>
+			                    <div class='modal-header modal-header-info'>
+			                      <button type='button' class='close' data-dismiss='modal'>&times;</button>
+			                      <h4 class='modal-title'> Events on ".date("l, d M Y",strtotime($date))."</span></small></h4>
+			                    </div>
+			                    <div class='modal-body'>";
+		$eventListHTML .= 			"<table class='table'>
+				                      <thead>
+				                        <tr>
+				                          <th>Event Title</th>
+				                          <th>Event Date</th>
+				                          <th>Action</th>
+				                        </tr>
+				                      </thead>
+				                      <tbody>";
+
+                      
+		while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+			$eventListHTML .= 			'<tr>
+											<td>'.$row['title'].'</td>
+											<td>'.$row['date'].'</td>
+											<td>View</td>
+										</tr>';
 		}
-		$eventListHTML .= '</ul>';
+
+		$eventListHTML .= 			"</tbody>
+									</table>
+									</div>
+				                    <div class='modal-footer'>
+				                      <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
+				                    </div>
+			                </div>
+			              </div>
+			            </div>";
 	}
 	echo $eventListHTML;
 }
@@ -409,15 +287,15 @@ function getEvents($date = ''){
  * Add event to date
  */
 function addEvent($date,$title){
-    //Include db configuration file
-	include 'dbConfig.php';
+	include '../config/config.php';
 	$currentDate = date("Y-m-d H:i:s");
-    //Insert the event data into database
-	$insert = $db->query("INSERT INTO events (title,date,created,modified) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."')");
-	if($insert){
-		echo 'ok';
-	}else{
-		echo 'err';
-	}
+
+	$stmt = $conn->prepare("INSERT INTO events (title,date,created,modified) VALUES (:title, :date,:current_date , :modified)");
+	$stmt->bindParam(':title',$title);
+	$stmt->bindParam(':date',$date);
+	$stmt->bindParam(':current_date',$currentDate);
+	$stmt->bindParam(':modified',$currentDate);
+	$stmt->execute();
+	echo 'ok';
 }
 ?>

@@ -33,7 +33,11 @@
   <link rel="stylesheet" type="text/css" href="calendar/style.css">
   <!-- jQuery -->
   <script src="../vendors/jquery/dist/jquery.min.js"></script>
-  
+
+  <link rel="stylesheet" type="text/css" href="../build/css/modalstyle.css">
+      <style type="text/css">
+        body { padding-right: 0 !important }
+    </style>
 </head>
 
 <body class="nav-md">
@@ -98,124 +102,176 @@
           <div class="col-md-12">
             <div class="x_panel">
               <div class="x_title">
-                <h2>Schedules <small>(events)</small></h2>
+                <h2>Schedule an Event</h2>
 
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
 
-               <div class="col-md-8">
-
-
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Schedule an Event</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link pull-right"><i class="fa fa-chevron-up"></i></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="calendar_div">
-                      <?php 
-                      include 'calendar/functions.php';
-                      echo getCalender(); ?>
-                    </div>
-                  </div>
+                <div id="calendar_div">
+                  <?php 
+                  include 'calendar/functions.php';
+                  echo getCalender(); ?>
                 </div>
 
+                <!-- Add Item Modal -->
+                <div id="addEventModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
 
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header modal-header-info">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Event On <span id="eventDateView"></span></h4>
+                      </div>
+                      <div class="modal-body">
 
+                        <form class="form-horizontal form-label-left input_mask">
 
-              </div>
-
-
-
-              <div class="col-md-4">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Upcoming Events <small>This Month</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <ul class="list-unstyled timeline">
-                      <li>
-                        <div class="block">
-                          <div class="tags">
-                            <a href="" class="tag">
-                              <span>Nov 27</span>
-                            </a>
-                          </div>
-                          <div class="block_content">
-                            <h2 class="title">
-                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                            </h2>
-                            <div class="byline">
-                              <span>13 hours ago</span> by <a>Jane Smith</a>
+                          <h4>Event Information</h4>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Event Title</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="text" class="form-control" id="eventTitle"  placeholder="Input event title">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                             </div>
-                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                            </p>
                           </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="block">
-                          <div class="tags">
-                            <a href="" class="tag">
-                              <span>Nov 28</span>
-                            </a>
-                          </div>
-                          <div class="block_content">
-                            <h2 class="title">
-                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                            </h2>
-                            <div class="byline">
-                              <span>13 hours ago</span> by <a>Jane Smith</a>
-                            </div>
-                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="block">
-                          <div class="tags">
-                            <a href="" class="tag">
-                              <span>Nov 29</span>
-                            </a>
-                          </div>
-                          <div class="block_content">
-                            <h2 class="title">
-                              <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                            </h2>
-                            <div class="byline">
-                              <span>13 hours ago</span> by <a>Jane Smith</a>
-                            </div>
-                            <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
 
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Summary</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <textarea class="form-control" rows="5" placeholder="Tell us about the event."></textarea>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Time Start</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="time" class="form-control" id="inputSuccess3">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Time End</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="time" class="form-control" id="inputSuccess3">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Event Status</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <select class="form-control">
+                                <option>Approved</option>
+                                <option>Blocked</option>
+                                <option>Canceled</option>
+                              </select>
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+                          </div>
+
+
+
+                          <h4>Organization Information</h4>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Organization Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="text" class="form-control" placeholder="Name of Organization">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Receiver Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="text" class="form-control" id="inputSuccess3" placeholder="Name of Receiver" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter Receiver Name">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
+                            </div>
+                          </div>
+
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Street</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="text" class="form-control" id="inputSuccess3" placeholder="Last Name" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter Receiver Name">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="text" class="form-control" id="inputSuccess3" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter City" name="city" required="">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Province</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="text" class="form-control" pattern="[a-zA-Z\s]{1,}" title="Letters only!" placeholder="Enter  Province" name="province" required="">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">ZipCode</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Enter  Zip Code" name="zipcode"  title="Enter a valid zip code" pattern="[0-9]{4}"  required="">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact Number</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="text" class="form-control" title="Enter a valid phone number" pattern="[0-9]{11}" placeholder="Enter  Contact Number" name="contactnumber" required="">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                              <input type="email" class="form-control" title="Enter a valid phone number" pattern="[0-9]{11}" placeholder="Enter Email Address" name="contactnumber" required="">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true" ></span>
+                            </div>
+                          </div>
+
+                          <div class="ln_solid"></div>
+                          <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+
+                              <input type="hidden" id="eventDate" value=""/>
+
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" id="addEventBtn" class="btn btn-success">Submit</button>
+
+                        <input class="btn btn-warning" type="reset" value="Reset"></input>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
+
+              <!-- Add Item Modal -->
+              <div id="event_list"></div>
+
+
+
+
 
 
             </div>

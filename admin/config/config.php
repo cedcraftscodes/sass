@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Manila');
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "onecaintadb";
+$dbname = "auditoriumscheddb";
 try 
 {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
